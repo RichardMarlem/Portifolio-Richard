@@ -11,28 +11,64 @@ body {
     background-color: var(--bg2);
 }
 
-header{
-    background: var(--bg2);
-    padding: 0.6rem;
+header {
+    background-color: rgba(2, 6, 23, 0.75);
+    padding: 0.8rem 1rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(51, 65, 85, 0.5);
     font-family: var(--font-family);
 
     h1{
         color: var(--color);
-        font-size: 1.5rem;
-        font-weight: 300;
-        
+        font-size: 1.9rem;
+        font-weight: 400;
     }
 
     span{
-        color: var(--color3);
+        color: var(--color2);
     }
+}
 
-    ul li a{
-        text-decoration: none;
-    }
+nav ul {
+    width: fit-content;
+    padding: 0.7rem 1rem;
+    border-radius: 0.3rem;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    
+
+    a {
+    gap: 0.3rem;
+    width: 7rem;
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--color3);
+    border-radius: 0.4rem;
+
+    transition:
+        background-color 0.3s,
+        color 0.3s,
+        transform 0.3s;
+}
+}
+
+nav#menu a:hover {
+    background-color: var(--bg3);
+    color: var(--color);
+    border-radius: 0.4rem;
+    transform: translateY(-3px);
 }
 
 .navegacao-primaria{
@@ -58,36 +94,43 @@ header{
 
 .section-div{
     width: 100%;
+    height: 70vh;
     background-color: var(--bg2);
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: space-around;
     align-items: center;
-    gap: 1rem;
     animation: inicializar .7s forwards;
+    background-image: url(/assets/img/rm2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position:  center right;
 
     h2{
         font-family: var(--font-family);
         font-weight: 500;
         color: var(--color3);
-        font-size: 2.1rem;
+        font-size: 2.4rem;
+        margin-top: -1rem;
     }
 
     p{
         color: var(--color2);
         font-family: var(--font-family);
-        font-weight: 100;
-        font-size: 1rem;
-        text-align:left;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 1.4rem;
+        margin-bottom: -1rem;
     }
+
 
     a{
         display: flex;
-        width: 20rem;
+        width: 22rem;
         gap: 1rem;
         font-weight: 100;
         padding: 0.5rem;
-        color: var(--color2);
+        color: var(--color);
         align-items: center;
         font-size: 0.9rem;
         border: 0.1rem solid var(--color2);
@@ -98,19 +141,17 @@ header{
         border-radius: 0.2rem;
         transition: all 0.5s;
         font-family: var(--font-family);
+        background-color: var(--bg3);
     }
 
-    img{
-        max-width: 100%;
-        height: 38rem;
-    }
+    
 
     
 }
 
 .section-div a:hover{
-    color: var(--color);
-    background-color: var(--bg3);
+    color: var(--color3);
+    background-color: transparent;
     border-radius: 0.2rem;
     transition: all 0.5s;
 }
@@ -166,8 +207,7 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
-    padding: 2.5rem;
-    
+    height: 60vh; 
 
     img{
         animation: ladoSecao 0.5s ease-in-out forwards;
@@ -190,6 +230,7 @@ main{
     grid-template-columns: 1fr 1fr;
     background-color: var(--bg2);
     padding: 1rem;
+    width: 100%;
 }
 
 .sobre-titulo{
@@ -237,15 +278,19 @@ article{
     width: 100%;
 }
 
+
+
 .sobre-texto{
     display: grid;
     grid-column: 1/-1;
     grid-template-columns: 1fr 1fr;
+    
 
     h1{
         color: var(--color2);
         font-size: 2.5rem;
         grid-column: 1/-1;
+        font-family: var(--font-family);
     }
 
     p{
@@ -279,6 +324,7 @@ article{
     font-size: 0.8rem;
     color: var(--color2);
     transition: all 0.5s;
+    
 
     a{
         text-decoration: none;
@@ -315,11 +361,11 @@ article{
     }
 }
 
-@media (max-width: 992px) {
+header > i {
+    display: none;
+}
 
-   
-
-    
+@media (max-width: 992px) { 
 
     .sobre img{
         display: none;
@@ -351,4 +397,55 @@ article{
             font-size: 0.7rem;
         }
     }
+
+    .navegacao-primaria {
+        display: none;
+    }
+
+    .navegacao-primaria.ativa {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--bg2);
+        gap: 1rem;
+    }
+
+    header {
+        position: relative;
+    }
+
+    .fa-bars,
+    .fa-xmark {
+        color: var(--color3);
+        font-size: 1.6rem;
+        cursor: pointer;
+    }
+
+    
+
+    
+    
+}
+
+@media (min-width: 993px) {
+    .section-div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 90%;
+        margin: auto;
+        padding: 0rem 5rem;
+        gap: 10rem;
+
+        a{
+            width: 30rem;
+        }
+   }
+
+   
+
 }
